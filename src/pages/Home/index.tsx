@@ -1,24 +1,48 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { CardProps } from "../../interfaces/CardProps"
 import Card from "../../components/Card"
 import './style.css'
+import { api } from "../../services/api"
+import type { AttendanceResponse } from "../../types/TypesCardRProps"
 
 export default function Home() {
     const [listName, setListName] = useState("")
     const [list, setList] = useState<CardProps[]>([])
+
+    useEffect(() => {
+        async function getData() {
+            try {
+                const response = await api.get<AttendanceResponse>('/attendance')
+                setList(response.data.attendance)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        getData()
+    }, [])
     
-    const handleAddList = () => {
-        const newList =  {
+    async function handleAddList() {
+        if (!listName || listName.trim() === "") {
+            alert("Digite um nome válido")
+            return
+        }
+
+        const newList = await api.post('create/attendance', {
             name: listName,
-            time: new Date()
-            .toLocaleTimeString('pt-br', {
+            time: new Date().toLocaleTimeString('pt-br', {
                 'hour': '2-digit',
                 'minute': '2-digit',
                 'second': '2-digit'
             })
-        }
+        })
 
-        setList(prevState => [...prevState, newList])
+        setList(prevState => [...prevState, newList.data.attendance])
+        setListName("")
+    }
+
+    async function handleBtnRemove() {
+        // await api.delete(`delete/attendance/${id}`)
+        console.log("deletando...")
     }
 
     return (
@@ -35,22 +59,28 @@ export default function Home() {
                         value={listName}
                     />
                 </div>
-
                 <div className="button">
                     <button className="btn" onClick={handleAddList}>
                         Adicionar
                     </button>
                 </div>
             </div>
-
+            <>
+                {
+                    console.log("LIST:", list)
+                }
+            </>
             {
-                list.map(list => (
-                    <Card 
-                        key={list.time}
-                        name={list.name}
-                        time={list.time}
-                    />
-                ))
+                list
+                    .filter(item => item && item.id)
+                    .map(item => (
+                        <Card
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            time={item.time}
+                        />
+                    ))
             }
 
         </div>
