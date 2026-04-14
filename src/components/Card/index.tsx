@@ -13,9 +13,7 @@ export default function Card({ name, time } : CardProps) {
             <div className="card">
                 <strong>{name}</strong>
                 <small>{time}</small>
-            </div>
-            <div className="btn-remove">
-                <ButtonRemove name="Remover" onClick={handleButtonRemove}/>
+                <ButtonRemove name="Remover" onClick={handleButtonRemove} />
             </div>
         </div>
     )
