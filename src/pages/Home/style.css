@@ -16,7 +16,7 @@
 
 .content-list {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin: 1rem 3rem 1rem 3rem;
     padding: 1.5rem;
@@ -34,19 +34,17 @@
     padding: 10px;
 }
 
-.button button {
-    width: 10rem;
-    border: none;
-    border-radius: 5px;
-    background: linear-gradient(rgba( 198, 14, 155 ), rgb(248, 96, 212));
-    font-size: 1.2rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 400;
-    cursor: pointer;
-    color: white;
-    padding: 10px;
+.content-list input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.button button:hover {
-    opacity: 90%;
+p .error {
+    display: block;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
 }

@@ -1,0 +1,16 @@
+.btn-add button {
+    width: 10rem;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(rgba( 198, 14, 155 ), rgb(248, 96, 212));
+    font-size: 1.2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+}
+
+.btn-add button:hover {
+    opacity: 90%;
+}

@@ -4,10 +4,12 @@ import Card from "../../components/Card"
 import './style.css'
 import { api } from "../../services/api"
 import type { AttendanceResponse } from "../../types/TypesCardRProps"
+import ButtonAdd from "../../components/ButtonAdd"
 
 export default function Home() {
     const [listName, setListName] = useState("")
     const [list, setList] = useState<CardProps[]>([])
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
         async function getData() {
@@ -21,10 +23,10 @@ export default function Home() {
         }
         getData()
     }, [])
-    
+
     async function handleAddList() {
         if (!listName || listName.trim() === "") {
-            alert("Digite um nome válido")
+            setError("O nome da lista não pode ser vazio.")
             return
         }
 
@@ -48,31 +50,28 @@ export default function Home() {
             </div>
             <div className="content-list">
                 <div className="list-input">
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder="Digite o nome da sua lista...."
                         onChange={(e) => setListName(e.target.value)}
                         value={listName}
                     />
+                    { error && <p className="error">{error}</p> }
                 </div>
-                <div className="button">
-                    <button className="btn" onClick={handleAddList}>
-                        Adicionar
-                    </button>
-                </div>
+                <ButtonAdd name="Adicionar" onClick={handleAddList}/>
             </div>
 
             {
                 list
                     .filter(item => item && item.id)
                     .map(item => (
-                            <Card
-                                key={item.id}
-                                id={item.id}
-                                name={item.name}
-                                time={item.time}
-                            />
-                        ))
+                        <Card
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            time={item.time}
+                        />
+                    ))
             }
         </div>
     )
