@@ -13,7 +13,8 @@ export default function Home() {
         async function getData() {
             try {
                 const response = await api.get<AttendanceResponse>('/attendance')
-                setList(response.data.attendance)
+                setList(response.data.attendance.flat())
+                console.log(response.data)
             } catch (error) {
                 console.error(error)
             }
@@ -40,10 +41,10 @@ export default function Home() {
         setListName("")
     }
 
-    async function handleBtnRemove() {
-        // await api.delete(`delete/attendance/${id}`)
-        console.log("deletando...")
-    }
+    // async function handleBtnRemove() {
+    //     // await api.delete(`delete/attendance/${id}`)
+    //     console.log("deletando...")
+    // }
 
     return (
         <div className="container">
@@ -65,24 +66,19 @@ export default function Home() {
                     </button>
                 </div>
             </div>
-            <>
-                {
-                    console.log("LIST:", list)
-                }
-            </>
+
             {
                 list
                     .filter(item => item && item.id)
                     .map(item => (
-                        <Card
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            time={item.time}
-                        />
-                    ))
+                            <Card
+                                key={item.id}
+                                id={item.id}
+                                name={item.name}
+                                time={item.time}
+                            />
+                        ))
             }
-
         </div>
     )
 }
