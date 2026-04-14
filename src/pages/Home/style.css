@@ -24,7 +24,8 @@
 }
 
 .content-list input {
-    width: 28rem;
+    width: 100%;
+    max-width: 28rem;
     font-size: 1rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 200;
@@ -47,4 +48,23 @@ p .error {
     color: red;
     font-size: 0.9rem;
     margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .content-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .content-list input {
+        max-width: 100%;
+    }
+
+    .btn-add button {
+        width: 100%;
+    }
 }
