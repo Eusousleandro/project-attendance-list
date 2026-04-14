@@ -53,7 +53,10 @@ export default function Home() {
                     <input
                         type="text"
                         placeholder="Digite o nome da sua lista...."
-                        onChange={(e) => setListName(e.target.value)}
+                        onChange={(e) => {
+                            setListName(e.target.value) 
+                            setError("")
+                        }}
                         value={listName}
                     />
                     { error && <p className="error">{error}</p> }
