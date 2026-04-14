@@ -41,11 +41,6 @@ export default function Home() {
         setListName("")
     }
 
-    // async function handleBtnRemove() {
-    //     // await api.delete(`delete/attendance/${id}`)
-    //     console.log("deletando...")
-    // }
-
     return (
         <div className="container">
             <div className="title">
