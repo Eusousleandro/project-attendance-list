@@ -64,6 +64,10 @@ p .error {
         max-width: 100%;
     }
 
+    p .error {
+        font-size: 0.4rem;
+    }
+
     .btn-add button {
         width: 100%;
     }
