@@ -3,8 +3,8 @@ import './style.css'
 
 export default function ButtonRemove({ name, onClick }: IButtonProps) {
     return (
-        <div className="btn" {...onClick}>
-            <button>
+        <div className="btn">
+            <button onClick={onClick}>
                 {name}
             </button>
         </div>
