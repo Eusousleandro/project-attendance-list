@@ -16,7 +16,6 @@ export default function Home() {
             try {
                 const response = await api.get<AttendanceResponse>('/attendance')
                 setList(response.data.attendance.flat())
-                console.log(response.data)
             } catch (error) {
                 console.error(error)
             }
